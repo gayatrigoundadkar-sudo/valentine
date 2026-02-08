@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For Milind 💖</title>
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Playfair+Display&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+
 <style>
 body {
     margin: 0;
@@ -45,7 +46,7 @@ body {
     to { transform: translateY(-10vh); }
 }
 
-/* Hello Text */
+/* Hello */
 .hello {
     font-size: 3rem;
     color: #d6336c;
@@ -71,7 +72,7 @@ body {
     transform: scale(1.1);
 }
 
-/* Valentine Card */
+/* Card */
 .card {
     background: white;
     padding: 40px;
@@ -79,20 +80,20 @@ body {
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     max-width: 350px;
     text-align: center;
+    position: relative;
 }
+
 .no-btn {
     padding: 10px 20px;
     border-radius: 20px;
     border: none;
     margin: 10px;
     cursor: pointer;
-}
-.no-btn:hover {
     position: absolute;
-    left: Math.random()*200 + "px";
+    transition: all 0.3s ease;
 }
 
-/* Envelope Scene */
+/* Envelope */
 .envelope-container {
     position: relative;
     width: 320px;
@@ -116,13 +117,16 @@ body {
     clip-path: polygon(0 0, 100% 0, 50% 100%);
     transform-origin: top;
     transition: transform 1s ease;
+    z-index: 3;
 }
+
+/* LETTER HIDDEN INSIDE */
 .letter {
     position: absolute;
     width: 90%;
     height: 180px;
     background: #fffdf5;
-    top: 20px;
+    top: 120px; /* hidden inside */
     left: 5%;
     border-radius: 5px;
     padding: 15px;
@@ -130,12 +134,13 @@ body {
     font-family: 'Dancing Script', cursive;
     font-size: 18px;
     line-height: 1.4;
-    transform: translateY(100px);
-    transition: transform 1s ease;
+    transition: top 1s ease;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    z-index: 1;
 }
+
 .open .flap { transform: rotateX(180deg); }
-.open .letter { transform: translateY(-40px); }
+.open .letter { top: -40px; } /* slides out */
 
 .tap-text {
     margin-top: 20px;
@@ -166,32 +171,21 @@ for (let i = 0; i < 25; i++) {
 
 <!-- PAGE 2 -->
 <div class="page page2" id="page2">
-    <div class="card">
+    <div class="card" id="card">
         <div style="font-size:40px;">🐱 ❤️</div>
         <h2>Milind, will you be my Valentine? 💖</h2>
         <button class="yes-btn" onclick="openLetter()">Yes 💘</button>
-        <button class="no-btn">No 🙈</button>
+        <button class="no-btn" id="noBtn">No 🙈</button>
     </div>
 </div>
 
-<!-- PAGE 3 ENVELOPE -->
+<!-- PAGE 3 -->
 <div class="page page3" id="page3">
     <div class="envelope-container" onclick="revealLetter()">
-        <div class="envelope">
+        <div class="envelope" id="envelope">
             <div class="flap"></div>
-            <div class="letter" id="letter">
-                bebooooooo i love u soooo much 💖  
-                ur mine and im urs  
-                u are my bobo and ur sooo handsome  
-                so hardworking so loving  
-                ur the mosssst handsome ❤️ baby of mine  
-                and ur the besttttt doctorrrrrrr  
-                and ull always mean alot to me  
-                no matter u end up marryying me or not??????!!!!!  
-                but i need u to know u can tell me anything anytime  
-                no matter where we are in life and at what stage  
-                even if we are not together u can always come to meeeeee ❤️  
-                bobiiii i loveeeee u soooooo mucchhh 💌
+            <div class="letter">
+                bebooooooo i love u soooo much 💖 ur mine and im urs u are my bobo and ur sooo handsome so hardworking so loving ur the mosssst handsome ❤️ baby of mine and ur the besttttt doctorrrrrrr and ull always mean alot to me no matter u end up marryying me or not??????!!!!! but i need u to know u can tell me anything anytime no matter where we are in life and at what stage even if we are not together u can always come to meeeeee ❤️ bobiiii i loveeeee u soooooo mucchhh thanks for being my valantine💍 💌
             </div>
         </div>
     </div>
@@ -205,15 +199,32 @@ function goNext() {
     page2.style.opacity = "1";
     page2.style.pointerEvents = "auto";
 }
+
 function openLetter() {
     page2.style.opacity = "0";
     page2.style.pointerEvents = "none";
     page3.style.opacity = "1";
     page3.style.pointerEvents = "auto";
 }
+
 function revealLetter() {
-    document.querySelector('.envelope').classList.toggle('open');
+    document.getElementById("envelope").classList.toggle("open");
 }
+
+/* Smooth running NO button */
+const noBtn = document.getElementById("noBtn");
+const card = document.getElementById("card");
+
+noBtn.addEventListener("mouseenter", () => {
+    const maxX = card.offsetWidth - noBtn.offsetWidth - 20;
+    const maxY = card.offsetHeight - noBtn.offsetHeight - 20;
+
+    const newX = Math.random() * maxX;
+    const newY = Math.random() * maxY;
+
+    noBtn.style.left = newX + "px";
+    noBtn.style.top = newY + "px";
+});
 </script>
 
 </body>
