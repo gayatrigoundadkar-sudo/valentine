@@ -12,7 +12,7 @@ body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
     overflow: hidden;
-    background: #ffe6eb;
+    background: #fce4ec;
 }
 
 /* Pages */
@@ -34,13 +34,13 @@ body {
     pointer-events: none;
 }
 
-/* Floating Hearts */
+/* Floating hearts */
 .heart {
     position: absolute;
     color: #ff4d6d;
     animation: float 6s linear infinite;
     font-size: 20px;
-    opacity: 0.6;
+    opacity: 0.5;
 }
 @keyframes float {
     from { transform: translateY(100vh); }
@@ -50,7 +50,7 @@ body {
 /* Hello */
 .hello {
     font-size: 3rem;
-    color: #d6336c;
+    color: #c2185b;
     animation: popIn 1.5s ease forwards;
 }
 @keyframes popIn {
@@ -63,7 +63,7 @@ body {
     padding: 14px 35px;
     border-radius: 30px;
     border: none;
-    background: #ff4d6d;
+    background: #e91e63;
     color: white;
     font-size: 1.2rem;
     cursor: pointer;
@@ -71,7 +71,7 @@ body {
 }
 .btn:hover { transform: scale(1.1); }
 
-/* Card */
+/* Valentine Card */
 .card {
     background: white;
     padding: 40px;
@@ -90,34 +90,57 @@ body {
     transition: all 0.3s ease;
 }
 
-/* Envelope Page */
-.envelope-img {
-    width: 260px;
+/* Vintage Envelope */
+.envelope-wrapper {
+    position: relative;
+    width: 320px;
     cursor: pointer;
-    transition: transform 0.3s;
 }
-.envelope-img:hover { transform: scale(1.05); }
+.envelope-img {
+    width: 100%;
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+}
+.wax-seal {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle at 30% 30%, #ff5a5a, #b30000);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+}
 
 .tap-text {
-    margin-top: 20px;
-    color: #b03060;
+    margin-top: 25px;
+    font-size: 20px;
+    color: #ad1457;
     font-weight: bold;
 }
 
 /* Letter Page */
+.page4 {
+    background: url('https://www.transparenttextures.com/patterns/aged-paper.png');
+}
+
 .letter-paper {
-    background: #fffdf5;
-    width: 80%;
-    max-width: 600px;
-    height: 70vh;
-    padding: 40px;
+    background: rgba(255, 248, 220, 0.9);
+    width: 85%;
+    max-width: 700px;
+    height: 75vh;
+    padding: 50px;
     border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
     font-family: 'Dancing Script', cursive;
-    font-size: 22px;
-    line-height: 1.5;
+    font-size: 24px;
+    line-height: 1.6;
     overflow-y: auto;
-    position: relative;
 }
 
 #typedText::after {
@@ -159,8 +182,11 @@ for (let i = 0; i < 25; i++) {
 
 <!-- PAGE 3 ENVELOPE -->
 <div class="page page3" id="page3">
-    <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" class="envelope-img" onclick="openLetterPage()">
-    <div class="tap-text">Tap the envelope 💌</div>
+    <div class="envelope-wrapper" onclick="openLetterPage()">
+        <img src="https://i.imgur.com/4M7IWwP.png" class="envelope-img">
+        <div class="wax-seal">❤️</div>
+    </div>
+    <div class="tap-text">Bebo tap on the envelope 💌</div>
 </div>
 
 <!-- PAGE 4 LETTER -->
@@ -178,7 +204,6 @@ function nextPage(hide, show){
     show.style.pointerEvents = "auto";
 }
 
-/* Smooth running NO button */
 const noBtn = document.getElementById("noBtn");
 const card = document.getElementById("card");
 noBtn.addEventListener("mouseenter", () => {
@@ -193,7 +218,6 @@ function openLetterPage(){
     startTyping();
 }
 
-/* Typing Animation */
 const message = `bebooooooo i love u soooo much 💖 ur mine and im urs u are my bobo and ur sooo handsome so hardworking so loving ur the mosssst handsome ❤️ baby of mine and ur the besttttt doctorrrrrrr and ull always mean alot to me no matter u end up marryying me or not??????!!!!! but i need u to know u can tell me anything anytime no matter where we are in life and at what stage even if we are not together u can always come to meeeeee ❤️ bobiiii i loveeeee u soooooo mucchhh 💌`;
 
 let i = 0;
