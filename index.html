@@ -31,7 +31,7 @@ body {
     box-sizing: border-box;
 }
 
-.page2, .page3, .page4, .page5 {
+.page2, .page3, .page4 {
     opacity: 0;
     pointer-events: none;
 }
@@ -42,7 +42,7 @@ body {
     color: #ff4d6d;
     animation: float 6s linear infinite;
     font-size: 18px;
-    opacity: 0.4;
+    opacity: 0.35;
 }
 @keyframes float {
     from { transform: translateY(100vh); }
@@ -112,58 +112,55 @@ body {
 /* Letter Page */
 .page4 {
     background: url('https://www.transparenttextures.com/patterns/aged-paper.png');
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 60px;
 }
 
 .letter-paper {
-    background: rgba(255,248,220,0.95);
+    position: relative;
+    background: rgba(255,248,220,0.96);
     width: 100%;
-    max-width: 650px;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+    max-width: 700px;
+    min-height: 80vh;
+    padding: 40px 25px 120px 25px;
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
     font-family: 'Dancing Script', cursive;
     font-size: 20px;
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
+/* Typing Cursor */
 #typedText::after {
     content: "|";
     animation: blink 1s infinite;
 }
 @keyframes blink { 50% { opacity: 0; } }
 
-/* MEMORY GALLERY */
-.page5 {
-    background: linear-gradient(to bottom, #ffe4ec, #fff0f5);
-    padding-top: 40px;
+/* Photo pinned */
+.photo-memory {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 110px;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+    transform: rotate(-5deg);
+    display: none;
 }
 
-.gallery-title {
-    font-family: 'Dancing Script', cursive;
-    font-size: 2rem;
-    color: #c2185b;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 15px;
-    width: 100%;
-    max-width: 700px;
-}
-
-.gallery img, .gallery video {
-    width: 100%;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-    animation: fadeUp 0.8s ease forwards;
-}
-
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
+/* Video pinned */
+.video-memory {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 120px;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+    transform: rotate(4deg);
+    display: none;
 }
 </style>
 </head>
@@ -207,16 +204,9 @@ for (let i = 0; i < 20; i++) {
 <!-- PAGE 4 LETTER -->
 <div class="page page4" id="page4">
     <div class="letter-paper">
+        <img src="memory1.jpg" class="photo-memory" id="photoMemory">
+        <video src="memory1.mp4" class="video-memory" id="videoMemory" controls></video>
         <div id="typedText"></div>
-    </div>
-</div>
-
-<!-- PAGE 5 GALLERY -->
-<div class="page page5" id="page5">
-    <div class="gallery-title">My Handsome Boboooo 💖</div>
-    <div class="gallery">
-        <img src="memory1.jpg">
-        <video src="memory1.mp4" controls></video>
     </div>
 </div>
 
@@ -253,7 +243,8 @@ function startTyping(){
             i++;
             setTimeout(type, 35);
         } else {
-            setTimeout(() => nextPage(page4,page5), 1200);
+            document.getElementById("photoMemory").style.display = "block";
+            document.getElementById("videoMemory").style.display = "block";
         }
     }
     type();
