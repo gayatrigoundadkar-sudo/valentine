@@ -11,13 +11,13 @@
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
-    overflow: hidden;
+    overflow-x: hidden;
     background: #fce4ec;
 }
 
 /* Pages */
 .page {
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
     display: flex;
     justify-content: center;
@@ -27,20 +27,22 @@ body {
     top: 0;
     left: 0;
     transition: opacity 0.8s ease;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-.page2, .page3, .page4 {
+.page2, .page3, .page4, .page5 {
     opacity: 0;
     pointer-events: none;
 }
 
 /* Floating hearts */
 .heart {
-    position: absolute;
+    position: fixed;
     color: #ff4d6d;
     animation: float 6s linear infinite;
-    font-size: 20px;
-    opacity: 0.5;
+    font-size: 18px;
+    opacity: 0.4;
 }
 @keyframes float {
     from { transform: translateY(100vh); }
@@ -49,10 +51,10 @@ body {
 
 /* Hello */
 .hello {
-    font-size: 3rem;
+    font-size: 2.2rem;
     color: #c2185b;
-    animation: popIn 1.5s ease forwards;
     text-align: center;
+    animation: popIn 1.5s ease forwards;
 }
 @keyframes popIn {
     from { transform: scale(0); opacity: 0; }
@@ -60,69 +62,51 @@ body {
 }
 
 .btn {
-    margin-top: 30px;
-    padding: 14px 35px;
-    border-radius: 30px;
+    margin-top: 25px;
+    padding: 12px 30px;
+    border-radius: 25px;
     border: none;
     background: #e91e63;
     color: white;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: 0.3s;
+    font-size: 1.1rem;
 }
-.btn:hover { transform: scale(1.1); }
 
-/* Valentine Card */
+/* Card */
 .card {
     background: white;
-    padding: 40px;
-    border-radius: 25px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    max-width: 350px;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    max-width: 320px;
+    width: 100%;
     text-align: center;
     position: relative;
 }
+
 .no-btn {
-    padding: 10px 20px;
-    border-radius: 20px;
+    padding: 8px 16px;
+    border-radius: 15px;
     border: none;
-    cursor: pointer;
     position: absolute;
     transition: all 0.3s ease;
 }
 
-/* Vintage Envelope */
+/* Envelope */
 .envelope-wrapper {
-    position: relative;
-    width: 320px;
-    cursor: pointer;
+    width: 260px;
+    max-width: 80%;
 }
 .envelope-img {
     width: 100%;
-    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+    display: block;
+    filter: drop-shadow(0 8px 12px rgba(0,0,0,0.2));
 }
-.wax-seal {
-    position: absolute;
-    width: 60px;
-    height: 60px;
-    background: radial-gradient(circle at 30% 30%, #ff5a5a, #b30000);
-    border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 24px;
-}
-
 .tap-text {
-    margin-top: 25px;
-    font-size: 20px;
+    margin-top: 20px;
+    font-size: 18px;
     color: #ad1457;
     font-weight: bold;
+    text-align: center;
 }
 
 /* Letter Page */
@@ -131,17 +115,15 @@ body {
 }
 
 .letter-paper {
-    background: rgba(255, 248, 220, 0.9);
-    width: 85%;
-    max-width: 700px;
-    height: 75vh;
-    padding: 50px;
+    background: rgba(255,248,220,0.95);
+    width: 100%;
+    max-width: 650px;
+    padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.25);
     font-family: 'Dancing Script', cursive;
-    font-size: 24px;
+    font-size: 20px;
     line-height: 1.6;
-    overflow-y: auto;
 }
 
 #typedText::after {
@@ -149,13 +131,47 @@ body {
     animation: blink 1s infinite;
 }
 @keyframes blink { 50% { opacity: 0; } }
+
+/* MEMORY GALLERY */
+.page5 {
+    background: linear-gradient(to bottom, #ffe4ec, #fff0f5);
+    padding-top: 40px;
+}
+
+.gallery-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    color: #c2185b;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 15px;
+    width: 100%;
+    max-width: 700px;
+}
+
+.gallery img, .gallery video {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    animation: fadeUp 0.8s ease forwards;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 </style>
 </head>
 
 <body>
 
 <script>
-for (let i = 0; i < 25; i++) {
+for (let i = 0; i < 20; i++) {
     let heart = document.createElement("div");
     heart.className = "heart";
     heart.innerHTML = "💖";
@@ -166,7 +182,7 @@ for (let i = 0; i < 25; i++) {
 </script>
 
 <!-- PAGE 1 -->
-<div class="page page1" id="page1">
+<div class="page" id="page1">
     <div class="hello">Helloooo Dr Milind Audiiiiii ❤️</div>
     <button class="btn" onclick="nextPage(page1,page2)">Tap here bebo 🌸</button>
 </div>
@@ -174,18 +190,16 @@ for (let i = 0; i < 25; i++) {
 <!-- PAGE 2 -->
 <div class="page page2" id="page2">
     <div class="card" id="card">
-        <div style="font-size:40px;">🐱 ❤️</div>
         <h2>Milind, will you be my Valentine? 💖</h2>
         <button class="btn" onclick="nextPage(page2,page3)">Yes 💘</button>
         <button class="no-btn" id="noBtn">No 🙈</button>
     </div>
 </div>
 
-<!-- PAGE 3 ENVELOPE -->
+<!-- PAGE 3 -->
 <div class="page page3" id="page3">
     <div class="envelope-wrapper" onclick="openLetterPage()">
         <img src="envelop.webp" class="envelope-img">
-        <div class="wax-seal">❤️</div>
     </div>
     <div class="tap-text">Bebo tap on the envelope 💌</div>
 </div>
@@ -194,6 +208,15 @@ for (let i = 0; i < 25; i++) {
 <div class="page page4" id="page4">
     <div class="letter-paper">
         <div id="typedText"></div>
+    </div>
+</div>
+
+<!-- PAGE 5 GALLERY -->
+<div class="page page5" id="page5">
+    <div class="gallery-title">My Handsome Boboooo 💖</div>
+    <div class="gallery">
+        <img src="memory1.jpg">
+        <video src="memory1.mp4" controls></video>
     </div>
 </div>
 
@@ -219,7 +242,7 @@ function openLetterPage(){
     startTyping();
 }
 
-const message = `bebooooooo i love u soooo much 💖 ur mine and im urs u are my bobo and ur sooo handsome so hardworking so loving ur the mosssst handsome ❤️ baby of mine and ur the besttttt doctorrrrrrr and ull always mean alot to me no matter u end up marryying me or not??????!!!!! but i need u to know u can tell me anything anytime no matter where we are in life and at what stage even if we are not together u can always come to meeeeee ❤️ bobiiii i loveeeee u soooooo mucchhh 💌`;
+const message = `bebooooooo i love u soooo much 💖 ur mine and im urs u are my bobo and ur sooo handsome so hardworking so loving ur the mosssst handsome ❤️ baby of mine and ur the besttttt doctorrrrrrr and ull always mean alot to me no matter what...`;
 
 let i = 0;
 function startTyping(){
@@ -229,6 +252,8 @@ function startTyping(){
             el.innerHTML += message.charAt(i);
             i++;
             setTimeout(type, 35);
+        } else {
+            setTimeout(() => nextPage(page4,page5), 1200);
         }
     }
     type();
