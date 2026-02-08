@@ -37,7 +37,7 @@ body {
     pointer-events: none;
 }
 
-/* Floating hearts */
+/* Floating background hearts */
 .heart {
     position: fixed;
     color: #ff4d6d;
@@ -120,6 +120,7 @@ body {
 }
 
 .letter-paper {
+    position: relative;
     background: rgba(255,248,220,0.96);
     width: 100%;
     max-width: 700px;
@@ -130,6 +131,7 @@ body {
     font-family: 'Special Elite', cursive;
     font-size: 20px;
     line-height: 1.7;
+    overflow: hidden;
 }
 
 /* Typing Cursor */
@@ -138,12 +140,27 @@ body {
     animation: blink 1s infinite;
 }
 @keyframes blink { 50% { opacity: 0; } }
+
+/* HEARTS OVER LETTER */
+.paper-heart {
+    position: absolute;
+    color: rgba(255,0,70,0.6);
+    font-size: 18px;
+    animation: floatPaper 6s linear infinite;
+    pointer-events: none;
+}
+@keyframes floatPaper {
+    from { transform: translateY(120%); opacity: 0; }
+    20% { opacity: 1; }
+    to { transform: translateY(-20%); opacity: 0; }
+}
 </style>
 </head>
 
 <body>
 
 <script>
+// Background hearts
 for (let i = 0; i < 20; i++) {
     let heart = document.createElement("div");
     heart.className = "heart";
@@ -179,7 +196,7 @@ for (let i = 0; i < 20; i++) {
 
 <!-- PAGE 4 LETTER -->
 <div class="page page4" id="page4">
-    <div class="letter-paper">
+    <div class="letter-paper" id="letterPaper">
         <div id="typedText"></div>
     </div>
 </div>
@@ -204,6 +221,22 @@ noBtn.addEventListener("mouseenter", () => {
 function openLetterPage(){
     nextPage(page3,page4);
     startTyping();
+    startPaperHearts();
+}
+
+// Floating hearts over letter
+function startPaperHearts(){
+    const paper = document.getElementById("letterPaper");
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "paper-heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random()*100 + "%";
+        heart.style.fontSize = (14 + Math.random()*10) + "px";
+        heart.style.animationDuration = (4 + Math.random()*3) + "s";
+        paper.appendChild(heart);
+        setTimeout(()=>heart.remove(),7000);
+    }, 600);
 }
 
 const message = `babyyyyy ❤️ I’m yourrr januuu ya ur jannuuuuu you have become too imp to me In last few months
@@ -236,5 +269,3 @@ function startTyping(){
 
 </body>
 </html>
-
-
