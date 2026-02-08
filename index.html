@@ -119,12 +119,11 @@ body {
 }
 
 .letter-paper {
-    position: relative;
     background: rgba(255,248,220,0.96);
     width: 100%;
     max-width: 700px;
     min-height: 80vh;
-    padding: 40px 25px 120px 25px;
+    padding: 40px 25px;
     border-radius: 12px;
     box-shadow: 0 15px 40px rgba(0,0,0,0.3);
     font-family: 'Dancing Script', cursive;
@@ -138,30 +137,6 @@ body {
     animation: blink 1s infinite;
 }
 @keyframes blink { 50% { opacity: 0; } }
-
-/* Photo pinned */
-.photo-memory {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    width: 110px;
-    border-radius: 10px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
-    transform: rotate(-5deg);
-    display: none;
-}
-
-/* Video pinned */
-.video-memory {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 120px;
-    border-radius: 10px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
-    transform: rotate(4deg);
-    display: none;
-}
 </style>
 </head>
 
@@ -204,8 +179,6 @@ for (let i = 0; i < 20; i++) {
 <!-- PAGE 4 LETTER -->
 <div class="page page4" id="page4">
     <div class="letter-paper">
-        <img src="memory1.jpg" class="photo-memory" id="photoMemory">
-        <video src="memory1.mp4" class="video-memory" id="videoMemory" controls></video>
         <div id="typedText"></div>
     </div>
 </div>
@@ -232,7 +205,7 @@ function openLetterPage(){
     startTyping();
 }
 
-const message = `bebooooooo i love u soooo much 💖 ur mine and im urs u are my bobo and ur sooo handsome so hardworking so loving ur the mosssst handsome ❤️ baby of mine and ur the besttttt doctorrrrrrr and ull always mean alot to me no matter what...`;
+const message = `bebooooooo i love u soooo much ur mine and im ypurs u are my bobo and ur sooo handsome so hardworking so loving ur the mosssst handsome ❤️ baby of mine and ur the besttttt doctorrrrrrr and ull always mean alot to me no matter if u end up marryying me or not??!! but i need u to know u can tell me anything anytime no matter where we are in life and at what stage even if we are not together u can always come to meeeeee. you will do great in life trust me and for the kind of person your are you willl always have the best and attract best things  ❤️ bobiii i loveeeee u soooooo mucchhh`;
 
 let i = 0;
 function startTyping(){
@@ -242,9 +215,6 @@ function startTyping(){
             el.innerHTML += message.charAt(i);
             i++;
             setTimeout(type, 35);
-        } else {
-            document.getElementById("photoMemory").style.display = "block";
-            document.getElementById("videoMemory").style.display = "block";
         }
     }
     type();
