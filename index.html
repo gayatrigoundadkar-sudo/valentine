@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For Milind 💖</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
 
 <style>
@@ -28,12 +29,12 @@ body {
     transition: opacity 0.8s ease;
 }
 
-.page2, .page3 {
+.page2, .page3, .page4 {
     opacity: 0;
     pointer-events: none;
 }
 
-/* Floating hearts */
+/* Floating Hearts */
 .heart {
     position: absolute;
     color: #ff4d6d;
@@ -57,7 +58,7 @@ body {
     to { transform: scale(1); opacity: 1; }
 }
 
-.continue-btn, .yes-btn {
+.btn {
     margin-top: 30px;
     padding: 14px 35px;
     border-radius: 30px;
@@ -68,9 +69,7 @@ body {
     cursor: pointer;
     transition: 0.3s;
 }
-.continue-btn:hover, .yes-btn:hover {
-    transform: scale(1.1);
-}
+.btn:hover { transform: scale(1.1); }
 
 /* Card */
 .card {
@@ -82,71 +81,50 @@ body {
     text-align: center;
     position: relative;
 }
-
 .no-btn {
     padding: 10px 20px;
     border-radius: 20px;
     border: none;
-    margin: 10px;
     cursor: pointer;
     position: absolute;
     transition: all 0.3s ease;
 }
 
-/* Envelope */
-.envelope-container {
-    position: relative;
-    width: 320px;
-    height: 220px;
+/* Envelope Page */
+.envelope-img {
+    width: 260px;
     cursor: pointer;
+    transition: transform 0.3s;
 }
-.envelope {
-    width: 100%;
-    height: 100%;
-    background: #f5deb3;
-    border-radius: 6px;
-    position: relative;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-}
-.flap {
-    width: 100%;
-    height: 100px;
-    background: #e6c79c;
-    position: absolute;
-    top: 0;
-    clip-path: polygon(0 0, 100% 0, 50% 100%);
-    transform-origin: top;
-    transition: transform 1s ease;
-    z-index: 3;
-}
-
-/* LETTER HIDDEN INSIDE */
-.letter {
-    position: absolute;
-    width: 90%;
-    height: 180px;
-    background: #fffdf5;
-    top: 120px; /* hidden inside */
-    left: 5%;
-    border-radius: 5px;
-    padding: 15px;
-    box-sizing: border-box;
-    font-family: 'Dancing Script', cursive;
-    font-size: 18px;
-    line-height: 1.4;
-    transition: top 1s ease;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    z-index: 1;
-}
-
-.open .flap { transform: rotateX(180deg); }
-.open .letter { top: -40px; } /* slides out */
+.envelope-img:hover { transform: scale(1.05); }
 
 .tap-text {
     margin-top: 20px;
     color: #b03060;
     font-weight: bold;
 }
+
+/* Letter Page */
+.letter-paper {
+    background: #fffdf5;
+    width: 80%;
+    max-width: 600px;
+    height: 70vh;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    font-family: 'Dancing Script', cursive;
+    font-size: 22px;
+    line-height: 1.5;
+    overflow-y: auto;
+    position: relative;
+}
+
+#typedText::after {
+    content: "|";
+    animation: blink 1s infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
 </style>
 </head>
 
@@ -166,7 +144,7 @@ for (let i = 0; i < 25; i++) {
 <!-- PAGE 1 -->
 <div class="page page1" id="page1">
     <div class="hello">Helloooo Milind 💕</div>
-    <button class="continue-btn" onclick="goNext()">Tap here bebo 🌸</button>
+    <button class="btn" onclick="nextPage(page1,page2)">Tap here bebo 🌸</button>
 </div>
 
 <!-- PAGE 2 -->
@@ -174,57 +152,62 @@ for (let i = 0; i < 25; i++) {
     <div class="card" id="card">
         <div style="font-size:40px;">🐱 ❤️</div>
         <h2>Milind, will you be my Valentine? 💖</h2>
-        <button class="yes-btn" onclick="openLetter()">Yes 💘</button>
+        <button class="btn" onclick="nextPage(page2,page3)">Yes 💘</button>
         <button class="no-btn" id="noBtn">No 🙈</button>
     </div>
 </div>
 
-<!-- PAGE 3 -->
+<!-- PAGE 3 ENVELOPE -->
 <div class="page page3" id="page3">
-    <div class="envelope-container" onclick="revealLetter()">
-        <div class="envelope" id="envelope">
-            <div class="flap"></div>
-            <div class="letter">
-                bebooooooo i love u soooo much 💖 ur mine and im urs u are my bobo and ur sooo handsome so hardworking so loving ur the mosssst handsome ❤️ baby of mine and ur the besttttt doctorrrrrrr and ull always mean alot to me no matter u end up marryying me or not??????!!!!! but i need u to know u can tell me anything anytime no matter where we are in life and at what stage even if we are not together u can always come to meeeeee ❤️ bobiiii i loveeeee u soooooo mucchhh thanks for being my valantine💍 💌
-            </div>
-        </div>
+    <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" class="envelope-img" onclick="openLetterPage()">
+    <div class="tap-text">Tap the envelope 💌</div>
+</div>
+
+<!-- PAGE 4 LETTER -->
+<div class="page page4" id="page4">
+    <div class="letter-paper">
+        <div id="typedText"></div>
     </div>
-    <div class="tap-text">Tap the envelope to open 💌</div>
 </div>
 
 <script>
-function goNext() {
-    page1.style.opacity = "0";
-    page1.style.pointerEvents = "none";
-    page2.style.opacity = "1";
-    page2.style.pointerEvents = "auto";
-}
-
-function openLetter() {
-    page2.style.opacity = "0";
-    page2.style.pointerEvents = "none";
-    page3.style.opacity = "1";
-    page3.style.pointerEvents = "auto";
-}
-
-function revealLetter() {
-    document.getElementById("envelope").classList.toggle("open");
+function nextPage(hide, show){
+    hide.style.opacity = "0";
+    hide.style.pointerEvents = "none";
+    show.style.opacity = "1";
+    show.style.pointerEvents = "auto";
 }
 
 /* Smooth running NO button */
 const noBtn = document.getElementById("noBtn");
 const card = document.getElementById("card");
-
 noBtn.addEventListener("mouseenter", () => {
     const maxX = card.offsetWidth - noBtn.offsetWidth - 20;
     const maxY = card.offsetHeight - noBtn.offsetHeight - 20;
-
-    const newX = Math.random() * maxX;
-    const newY = Math.random() * maxY;
-
-    noBtn.style.left = newX + "px";
-    noBtn.style.top = newY + "px";
+    noBtn.style.left = Math.random()*maxX + "px";
+    noBtn.style.top = Math.random()*maxY + "px";
 });
+
+function openLetterPage(){
+    nextPage(page3,page4);
+    startTyping();
+}
+
+/* Typing Animation */
+const message = `bebooooooo i love u soooo much 💖 ur mine and im urs u are my bobo and ur sooo handsome so hardworking so loving ur the mosssst handsome ❤️ baby of mine and ur the besttttt doctorrrrrrr and ull always mean alot to me no matter u end up marryying me or not??????!!!!! but i need u to know u can tell me anything anytime no matter where we are in life and at what stage even if we are not together u can always come to meeeeee ❤️ bobiiii i loveeeee u soooooo mucchhh 💌`;
+
+let i = 0;
+function startTyping(){
+    const el = document.getElementById("typedText");
+    function type(){
+        if(i < message.length){
+            el.innerHTML += message.charAt(i);
+            i++;
+            setTimeout(type, 35);
+        }
+    }
+    type();
+}
 </script>
 
 </body>
