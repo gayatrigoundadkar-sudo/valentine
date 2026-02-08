@@ -4,145 +4,151 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For Milind 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Playfair+Display&display=swap" rel="stylesheet">
 <style>
-    body {
-        margin: 0;
-        font-family: 'Segoe UI', sans-serif;
-        overflow: hidden;
-    }
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+    background: #ffe6eb;
+}
 
-    /* 🌸 Floral Soft Background */
-    .page {
-        height: 100vh;
-        width: 100vw;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        text-align: center;
-        transition: opacity 0.8s ease;
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
+/* Pages */
+.page {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.8s ease;
+}
 
-    .page1 {
-        background: linear-gradient(135deg, #ffd6e0, #ffeef3);
-    }
+.page2, .page3 {
+    opacity: 0;
+    pointer-events: none;
+}
 
-    .page2 {
-        background: linear-gradient(135deg, #ffccd5, #fff0f5);
-        opacity: 0;
-        pointer-events: none;
-    }
+/* Floating hearts */
+.heart {
+    position: absolute;
+    color: #ff4d6d;
+    animation: float 6s linear infinite;
+    font-size: 20px;
+    opacity: 0.6;
+}
+@keyframes float {
+    from { transform: translateY(100vh); }
+    to { transform: translateY(-10vh); }
+}
 
-    /* Floating hearts */
-    .heart {
-        position: absolute;
-        color: #ff4d6d;
-        animation: float 6s linear infinite;
-        font-size: 20px;
-        opacity: 0.6;
-    }
+/* Hello Text */
+.hello {
+    font-size: 3rem;
+    color: #d6336c;
+    animation: popIn 1.5s ease forwards;
+}
+@keyframes popIn {
+    from { transform: scale(0); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
 
-    @keyframes float {
-        from { transform: translateY(100vh); }
-        to { transform: translateY(-10vh); }
-    }
+.continue-btn, .yes-btn {
+    margin-top: 30px;
+    padding: 14px 35px;
+    border-radius: 30px;
+    border: none;
+    background: #ff4d6d;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.continue-btn:hover, .yes-btn:hover {
+    transform: scale(1.1);
+}
 
-    /* Animated Hello */
-    .hello {
-        font-size: 3rem;
-        color: #d6336c;
-        animation: popIn 1.5s ease forwards;
-    }
+/* Valentine Card */
+.card {
+    background: white;
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    max-width: 350px;
+    text-align: center;
+}
+.no-btn {
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    margin: 10px;
+    cursor: pointer;
+}
+.no-btn:hover {
+    position: absolute;
+    left: Math.random()*200 + "px";
+}
 
-    @keyframes popIn {
-        0% { transform: scale(0); opacity: 0; }
-        100% { transform: scale(1); opacity: 1; }
-    }
+/* Envelope Scene */
+.envelope-container {
+    position: relative;
+    width: 320px;
+    height: 220px;
+    cursor: pointer;
+}
+.envelope {
+    width: 100%;
+    height: 100%;
+    background: #f5deb3;
+    border-radius: 6px;
+    position: relative;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+.flap {
+    width: 100%;
+    height: 100px;
+    background: #e6c79c;
+    position: absolute;
+    top: 0;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    transform-origin: top;
+    transition: transform 1s ease;
+}
+.letter {
+    position: absolute;
+    width: 90%;
+    height: 180px;
+    background: #fffdf5;
+    top: 20px;
+    left: 5%;
+    border-radius: 5px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-family: 'Dancing Script', cursive;
+    font-size: 18px;
+    line-height: 1.4;
+    transform: translateY(100px);
+    transition: transform 1s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.open .flap { transform: rotateX(180deg); }
+.open .letter { transform: translateY(-40px); }
 
-    .continue-btn {
-        margin-top: 30px;
-        padding: 12px 30px;
-        border-radius: 25px;
-        border: none;
-        background: #ff4d6d;
-        color: white;
-        font-size: 1.2rem;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-
-    .continue-btn:hover {
-        transform: scale(1.1);
-        background: #e03160;
-    }
-
-    /* Card */
-    .card {
-        background: white;
-        padding: 40px;
-        border-radius: 25px;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        max-width: 350px;
-        position: relative;
-    }
-
-    .card h2 {
-        color: #d6336c;
-        margin-bottom: 10px;
-    }
-
-    .buttons {
-        margin-top: 20px;
-    }
-
-    .yes-btn, .no-btn {
-        padding: 10px 20px;
-        border-radius: 20px;
-        border: none;
-        font-size: 1rem;
-        cursor: pointer;
-        margin: 5px;
-        transition: 0.3s;
-    }
-
-    .yes-btn {
-        background: #ff4d6d;
-        color: white;
-    }
-
-    .yes-btn:hover {
-        transform: scale(1.1);
-        background: #e03160;
-    }
-
-    .no-btn {
-        background: #f1f3f5;
-    }
-
-    .no-btn:hover {
-        position: absolute;
-        left: calc(10% + 80% * Math.random());
-        top: calc(10% + 80% * Math.random());
-    }
-
-    .celebrate {
-        display: none;
-        margin-top: 15px;
-        font-size: 1.2rem;
-        color: #e03160;
-        animation: popIn 0.6s ease forwards;
-    }
+.tap-text {
+    margin-top: 20px;
+    color: #b03060;
+    font-weight: bold;
+}
 </style>
 </head>
 
 <body>
 
-<!-- Floating Hearts -->
 <script>
-for (let i = 0; i < 20; i++) {
+for (let i = 0; i < 25; i++) {
     let heart = document.createElement("div");
     heart.className = "heart";
     heart.innerHTML = "💖";
@@ -152,45 +158,61 @@ for (let i = 0; i < 20; i++) {
 }
 </script>
 
-<!-- 🌸 PAGE 1 -->
+<!-- PAGE 1 -->
 <div class="page page1" id="page1">
     <div class="hello">Helloooo Milind 💕</div>
-    <button class="continue-btn" onclick="goNext()">Tap to Continue 🌸</button>
+    <button class="continue-btn" onclick="goNext()">Tap here bebo 🌸</button>
 </div>
 
-<!-- 💌 PAGE 2 -->
+<!-- PAGE 2 -->
 <div class="page page2" id="page2">
     <div class="card">
         <div style="font-size:40px;">🐱 ❤️</div>
         <h2>Milind, will you be my Valentine? 💖</h2>
+        <button class="yes-btn" onclick="openLetter()">Yes 💘</button>
+        <button class="no-btn">No 🙈</button>
+    </div>
+</div>
 
-        <div class="buttons">
-            <button class="yes-btn" onclick="sayYes()">Yes 💘</button>
-            <button class="no-btn" onmouseover="moveNo(this)">No 🙈</button>
-        </div>
-
-        <div class="celebrate" id="celebrate">
-            YAYYYY 💞 I knew it!! You’re stuck with me forever 😘
+<!-- PAGE 3 ENVELOPE -->
+<div class="page page3" id="page3">
+    <div class="envelope-container" onclick="revealLetter()">
+        <div class="envelope">
+            <div class="flap"></div>
+            <div class="letter" id="letter">
+                bebooooooo i love u soooo much 💖  
+                ur mine and im urs  
+                u are my bobo and ur sooo handsome  
+                so hardworking so loving  
+                ur the mosssst handsome ❤️ baby of mine  
+                and ur the besttttt doctorrrrrrr  
+                and ull always mean alot to me  
+                no matter u end up marryying me or not??????!!!!!  
+                but i need u to know u can tell me anything anytime  
+                no matter where we are in life and at what stage  
+                even if we are not together u can always come to meeeeee ❤️  
+                bobiiii i loveeeee u soooooo mucchhh 💌
+            </div>
         </div>
     </div>
+    <div class="tap-text">Tap the envelope to open 💌</div>
 </div>
 
 <script>
 function goNext() {
-    document.getElementById("page1").style.opacity = "0";
-    document.getElementById("page1").style.pointerEvents = "none";
-    document.getElementById("page2").style.opacity = "1";
-    document.getElementById("page2").style.pointerEvents = "auto";
+    page1.style.opacity = "0";
+    page1.style.pointerEvents = "none";
+    page2.style.opacity = "1";
+    page2.style.pointerEvents = "auto";
 }
-
-function sayYes() {
-    document.getElementById("celebrate").style.display = "block";
+function openLetter() {
+    page2.style.opacity = "0";
+    page2.style.pointerEvents = "none";
+    page3.style.opacity = "1";
+    page3.style.pointerEvents = "auto";
 }
-
-function moveNo(btn) {
-    btn.style.position = "absolute";
-    btn.style.left = Math.random() * 250 + "px";
-    btn.style.top = Math.random() * 200 + "px";
+function revealLetter() {
+    document.querySelector('.envelope').classList.toggle('open');
 }
 </script>
 
